@@ -8,6 +8,15 @@ public class CustomerListDto {
 	String customer_id;
 	String customer_pw;
 	
+	public CustomerListDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public CustomerListDto(String customer_id) {
+		super();
+		this.customer_id = customer_id;
+	}
 	
 	//constructor
 	public String getCustomer_id() {

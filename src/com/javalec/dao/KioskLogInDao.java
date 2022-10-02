@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.javalec.dto.CustomerListDto;
 import com.javalec.util.DBConnect;
 
 public class KioskLogInDao {
@@ -28,7 +29,7 @@ public class KioskLogInDao {
 	// --------------------------method--------------------------
 
 	public int loginCheck() {
-		int check = 1;
+		int check = 0;
 		String query1 = "select count(*) from customer ";
 		String query2 = "where customer_id = '" + custId + "'  and customer_pw = '" + custPw + "'";
 
@@ -40,14 +41,20 @@ public class KioskLogInDao {
 			ResultSet rs = stmt_mysql.executeQuery(query1 + query2);
 
 			while (rs.next()) {
-				check = Integer.parseInt(rs.getString(1));
+				if(Integer.parseInt(rs.getString(1)) == 1) {
+					check++;
+					
+				}
+				
 			}
-
+			
+		
+			
 			conn_mysql.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return check = 0;
+			return check;
 		}
 		return check;
 

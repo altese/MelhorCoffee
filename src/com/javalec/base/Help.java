@@ -140,7 +140,6 @@ public class Help extends JDialog {
 	}
 
 	public void productOrder2() {
-		
 		lblproductPrice.setText(Integer.toString(Integer.parseInt((String)lblProductPrice2.getText()) * Integer.parseInt((String)cbStock.getSelectedItem())));
 		
 	}

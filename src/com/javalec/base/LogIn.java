@@ -8,11 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.javalec.dao.KioskLogInDao;
+import com.javalec.dto.CustomerListDto;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LogIn {
+public class LogIn extends JDialog {
 
 	private JFrame frame;
 	private JTextField tfIdInsert;
@@ -86,6 +90,12 @@ public class LogIn {
 				
 				if(loginCheck == 1) {
 					JOptionPane.showMessageDialog(null, "로그인되었습니다.");
+					
+					Static_CustomerId.setCustomer_id(custId);
+					
+					frame.setVisible(false);
+					productSelectList.main(null);
+					
 				}else {
 					JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 확인하세요.");
 					System.out.println(loginCheck);
