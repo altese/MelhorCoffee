@@ -80,8 +80,6 @@ public class Help extends JDialog {
 			btnOrder.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-//					productSelectList project = new productSelectList();
-//					project.setVisible(true);
 					productOrder();
 					
 				}
@@ -114,20 +112,13 @@ public class Help extends JDialog {
 			cbStock = new JComboBox();
 			cbStock.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-//					HelpDto dto = new HelpDto();
-//					System.out.println("getid: "+ dto.getProduct_id());
+					
 					productOrder2();
 					
 				}
 			});
 			
 			cbStock.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9"}));
-//			for(int i = 0; i < 9; i++) {
-//				cbStock.setModel(new DefaultComboBoxModel(new String[] {
-//							
-//				}));
-//			}
 			cbStock.setBounds(161, 98, 103, 23);
 		}
 		return cbStock;
