@@ -153,9 +153,6 @@ public class productSelectList extends JDialog {
 	
 	// -----------------------------------------------------------
 	
-	
-		// Init the table
-  
 	// Init the table
 		public void tableInit() {
 		
@@ -225,7 +222,6 @@ public class productSelectList extends JDialog {
 		frmDialog.setVisible(false);
 		
 	}
-	
 	
 	
 	
