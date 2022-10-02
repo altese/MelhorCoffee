@@ -38,7 +38,7 @@ public class productSelectList extends JDialog {
 
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JLabel lblCustomer_id;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -154,8 +154,8 @@ public class productSelectList extends JDialog {
 	
 	// -----------------------------------------------------------
 	
-	
-		// Init the table
+  
+	// Init the table
 		public void tableInit() {
 		
 		Outer_Table.addColumn("순번");
@@ -203,7 +203,7 @@ public class productSelectList extends JDialog {
 		int listCount = dtoList.size();
 		
 		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
-		
+
 		for(int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(dtoList.get(i).getProduct_id());
 			String[] qTxt = {temp, dtoList.get(i).getProduct_name(), Integer.toString(dtoList.get(i).getProduct_price()), Integer.toString(dtoList.get(i).getProduct_stock())};
@@ -250,5 +250,5 @@ public class productSelectList extends JDialog {
 	
 	
 	
-	
+
 }// End Line

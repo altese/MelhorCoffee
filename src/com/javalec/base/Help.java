@@ -114,9 +114,7 @@ public class Help extends JDialog {
 			cbStock = new JComboBox();
 			cbStock.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-//					HelpDto dto = new HelpDto();
-//					System.out.println("getid: "+ dto.getProduct_id());
+					
 					productOrder2();
 					
 				}
@@ -173,6 +171,7 @@ public class Help extends JDialog {
 	}
 
 	public void productOrder2() {
+		
 		lblproductPrice.setText(Integer.toString(Integer.parseInt((String)lblProductPrice2.getText()) * Integer.parseInt((String)cbStock.getSelectedItem())));
 		
 	}
