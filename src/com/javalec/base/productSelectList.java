@@ -10,9 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.javalec.dao.ProductListDao;
-
 import com.javalec.dto.CustomerListDto;
-
 import com.javalec.dto.HelpDto;
 import com.javalec.dto.ProductListDto;
 
@@ -39,10 +37,8 @@ public class productSelectList extends JDialog {
 	private JTable Inner_Table;
 
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
-
 	private JLabel lblCustomer_id;
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -87,25 +83,19 @@ public class productSelectList extends JDialog {
 		frmDialog.getContentPane().add(getTfShoesSelect());
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
-
 		frmDialog.getContentPane().add(getLblCustomer_id());
-
 	}
 	private JLabel getProduct_name() {
 		if (product_name == null) {
 			product_name = new JLabel("신발 이름");
-
 			product_name.setBounds(35, 46, 64, 22);
-
 		}
 		return product_name;
 	}
 	private JTextField getTfShoesSelect() {
 		if (tfShoesSelect == null) {
 			tfShoesSelect = new JTextField();
-
 			tfShoesSelect.setBounds(103, 47, 197, 21);
-
 			tfShoesSelect.setColumns(10);
 		}
 		return tfShoesSelect;
@@ -121,9 +111,7 @@ public class productSelectList extends JDialog {
 					
 				}
 			});
-
 			btnShoesSelect.setBounds(320, 46, 91, 23);
-
 		}
 		return btnShoesSelect;
 	}
@@ -156,21 +144,18 @@ public class productSelectList extends JDialog {
 		return Inner_Table;
 	}
 	
-4
 	private JLabel getLblCustomer_id() {
 		if (lblCustomer_id == null) {
 			lblCustomer_id = new JLabel("New label");
-			lblCustomer_id.setBounds(35, 21, 50, 15);
+			lblCustomer_id.setBounds(35, 21, 140, 15);
 		}
 		return lblCustomer_id;
 	}
 	
-
 	// -----------------------------------------------------------
 	
-	
+  
 	// Init the table
-
 		public void tableInit() {
 		
 		Outer_Table.addColumn("순번");
@@ -217,8 +202,7 @@ public class productSelectList extends JDialog {
 		
 		int listCount = dtoList.size();
 		
-
-		lblCustomer_id.setText(Static_CustomerId.customer_id);
+		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
 
 		for(int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(dtoList.get(i).getProduct_id());
@@ -236,11 +220,34 @@ public class productSelectList extends JDialog {
 		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
 		
 		Help help = new Help();
-		help.productOrder(Integer.parseInt(wkSequence));
+		help.productOrderList(Integer.parseInt(wkSequence));
 		help.setVisible(true);	// 리스트 클릭 시 다음 페이지로 넘어감
 		frmDialog.setVisible(false);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
