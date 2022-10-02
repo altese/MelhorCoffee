@@ -13,8 +13,14 @@ public class HelpDto {
 	}
 	
 	
-	
-	
+
+	public HelpDto(int product_id, String product_name, int product_price, int product_stock) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.product_stock = product_stock;
+		this.product_price = product_price;
+	}
 
 
 	public HelpDto(String product_name, int product_price) {
@@ -24,18 +30,10 @@ public class HelpDto {
 	}
 
 
-
-
-
-
 	public HelpDto(int product_id) {
 		super();
 		this.product_id = product_id;
 	}
-
-
-
-
 
 
 	public HelpDto(String product_name, int product_price, int product_stock) {
@@ -44,18 +42,6 @@ public class HelpDto {
 		this.product_stock = product_stock;
 		this.product_price = product_price;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
