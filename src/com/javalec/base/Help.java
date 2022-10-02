@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.javalec.dao.HelpDao;
 import com.javalec.dto.HelpDto;
@@ -14,16 +15,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Help extends JDialog {
 	private JLabel lblProductName;
-	private JButton btnOk;
+	private JButton btnOrder;
 	private JFrame frmDialog;
 	private JComboBox cbStock;
 	private JLabel lblproductPrice;
 	private JLabel lblProductPrice2;
+	private JLabel lblProductId;
 	
 
 	/**
@@ -59,35 +59,36 @@ public class Help extends JDialog {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		getContentPane().add(getLblProductName());
-		getContentPane().add(getBtnOk());
+		getContentPane().add(getBtnOrder());
 		getContentPane().add(getCbStock());
 		getContentPane().add(getLblproductPrice());
 		getContentPane().add(getLblProductPrice2());
+		getContentPane().add(getLblProductId());
 
 	}
 
 	private JLabel getLblProductName() {
 		if (lblProductName == null) {
 			lblProductName = new JLabel("제품명");
-			lblProductName.setBounds(161, 40, 103, 15);
+			lblProductName.setBounds(161, 70, 103, 15);
 		}
 		return lblProductName;
 	}
-	private JButton getBtnOk() {
-		if (btnOk == null) {
-			btnOk = new JButton("New button");
-			btnOk.addActionListener(new ActionListener() {
+	private JButton getBtnOrder() {
+		if (btnOrder == null) {
+			btnOrder = new JButton("구매하기");
+			btnOrder.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					productSelectList project = new productSelectList();
-					project.setVisible(true);
-					
+//					productSelectList project = new productSelectList();
+//					project.setVisible(true);
+					productOrder();
 					
 				}
 			});
-			btnOk.setBounds(318, 230, 91, 23);
+			btnOrder.setBounds(318, 230, 91, 23);
 		}
-		return btnOk;
+		return btnOrder;
 	}
 	
 	private JLabel getLblproductPrice() {
@@ -122,21 +123,53 @@ public class Help extends JDialog {
 			});
 			
 			cbStock.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9"}));
+//			for(int i = 0; i < 9; i++) {
+//				cbStock.setModel(new DefaultComboBoxModel(new String[] {
+//							
+//				}));
+//			}
 			cbStock.setBounds(161, 98, 103, 23);
 		}
 		return cbStock;
 	}
 	
+	private JLabel getLblProductId() {
+		if (lblProductId == null) {
+			lblProductId = new JLabel("New label");
+			lblProductId.setBounds(326, 116, 50, 15);
+			lblProductId.setVisible(false);
+		}
+		return lblProductId;
+	}
 	
-	public void productOrder(int wkSequence) {
-		System.out.println("1");
+	
+	public void productOrderList(int wkSequence) {
+		
 		HelpDao dao = new HelpDao(wkSequence);
 		HelpDto dto = dao.tableClick();
 		
+		lblProductId.setText(Integer.toString(dto.getProduct_id()));
 		lblProductName.setText(dto.getProduct_name());
 		lblProductPrice2.setText(Integer.toString(dto.getProduct_price()));
 		lblproductPrice.setText(Integer.toString(dto.getProduct_price()));
 		
+	}
+
+	private void productOrder() {
+		
+		int product_id = Integer.parseInt(lblProductId.getText().trim());
+		int product_price = Integer.parseInt(lblproductPrice.getText().trim());
+		int product_stock = Integer.parseInt((String)cbStock.getSelectedItem());
+		
+		HelpDao dao = new HelpDao(Static_CustomerId.customer_id, product_id, product_stock, product_price);
+		int check = dao.productOrdersAction();
+		
+		if(check == 1) {
+			JOptionPane.showMessageDialog(null, "상품 구매가 완료 되었습니다.");
+			dao.productStockOut(product_id, product_stock);
+		} else {
+			JOptionPane.showMessageDialog(null, "DB 작업중 문제가 발생했습니다. \n행정실로 문의 하세요!");
+		}
 	}
 
 	public void productOrder2() {
@@ -144,4 +177,23 @@ public class Help extends JDialog {
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 } // End Line

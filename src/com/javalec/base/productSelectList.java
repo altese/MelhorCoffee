@@ -147,7 +147,7 @@ public class productSelectList extends JDialog {
 	private JLabel getLblCustomer_id() {
 		if (lblCustomer_id == null) {
 			lblCustomer_id = new JLabel("New label");
-			lblCustomer_id.setBounds(35, 21, 50, 15);
+			lblCustomer_id.setBounds(35, 21, 140, 15);
 		}
 		return lblCustomer_id;
 	}
@@ -155,7 +155,7 @@ public class productSelectList extends JDialog {
 	// -----------------------------------------------------------
 	
 	
-	// Init the table
+		// Init the table
 		public void tableInit() {
 		
 		Outer_Table.addColumn("순번");
@@ -202,7 +202,7 @@ public class productSelectList extends JDialog {
 		
 		int listCount = dtoList.size();
 		
-		lblCustomer_id.setText(Static_CustomerId.customer_id);
+		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
 		
 		for(int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(dtoList.get(i).getProduct_id());
@@ -220,7 +220,7 @@ public class productSelectList extends JDialog {
 		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
 		
 		Help help = new Help();
-		help.productOrder(Integer.parseInt(wkSequence));
+		help.productOrderList(Integer.parseInt(wkSequence));
 		help.setVisible(true);	// 리스트 클릭 시 다음 페이지로 넘어감
 		frmDialog.setVisible(false);
 		
