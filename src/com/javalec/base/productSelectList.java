@@ -10,7 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.javalec.dao.ProductListDao;
+
 import com.javalec.dto.CustomerListDto;
+
 import com.javalec.dto.HelpDto;
 import com.javalec.dto.ProductListDto;
 
@@ -37,7 +39,9 @@ public class productSelectList extends JDialog {
 	private JTable Inner_Table;
 
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
+
 	private JLabel lblCustomer_id;
+
 	
 	/**
 	 * Launch the application.
@@ -83,19 +87,25 @@ public class productSelectList extends JDialog {
 		frmDialog.getContentPane().add(getTfShoesSelect());
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
+
 		frmDialog.getContentPane().add(getLblCustomer_id());
+
 	}
 	private JLabel getProduct_name() {
 		if (product_name == null) {
 			product_name = new JLabel("신발 이름");
+
 			product_name.setBounds(35, 46, 64, 22);
+
 		}
 		return product_name;
 	}
 	private JTextField getTfShoesSelect() {
 		if (tfShoesSelect == null) {
 			tfShoesSelect = new JTextField();
+
 			tfShoesSelect.setBounds(103, 47, 197, 21);
+
 			tfShoesSelect.setColumns(10);
 		}
 		return tfShoesSelect;
@@ -111,7 +121,9 @@ public class productSelectList extends JDialog {
 					
 				}
 			});
+
 			btnShoesSelect.setBounds(320, 46, 91, 23);
+
 		}
 		return btnShoesSelect;
 	}
@@ -144,6 +156,7 @@ public class productSelectList extends JDialog {
 		return Inner_Table;
 	}
 	
+4
 	private JLabel getLblCustomer_id() {
 		if (lblCustomer_id == null) {
 			lblCustomer_id = new JLabel("New label");
@@ -152,10 +165,12 @@ public class productSelectList extends JDialog {
 		return lblCustomer_id;
 	}
 	
+
 	// -----------------------------------------------------------
 	
 	
 	// Init the table
+
 		public void tableInit() {
 		
 		Outer_Table.addColumn("순번");
@@ -202,8 +217,9 @@ public class productSelectList extends JDialog {
 		
 		int listCount = dtoList.size();
 		
+
 		lblCustomer_id.setText(Static_CustomerId.customer_id);
-		
+
 		for(int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(dtoList.get(i).getProduct_id());
 			String[] qTxt = {temp, dtoList.get(i).getProduct_name(), Integer.toString(dtoList.get(i).getProduct_price()), Integer.toString(dtoList.get(i).getProduct_stock())};
@@ -227,28 +243,5 @@ public class productSelectList extends JDialog {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }// End Line
