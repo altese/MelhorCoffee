@@ -11,7 +11,12 @@ import javax.swing.table.TableColumn;
 
 import com.javalec.dao.ProductListDao;
 import com.javalec.dto.CustomerListDto;
+
+import com.javalec.dto.ProductOrderDto;
+import com.javalec.util.Static_CustomerId;
+
 import com.javalec.dto.HelpDto;
+
 import com.javalec.dto.ProductListDto;
 
 import javax.swing.JButton;
@@ -27,7 +32,11 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 
+
+public class productSelectList extends JFrame {
+
 public class productSelectList extends JDialog {
+
 
 	private JFrame frmDialog;
 	private JLabel product_name;
@@ -38,7 +47,12 @@ public class productSelectList extends JDialog {
 
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JLabel lblCustomer_id;
+
+	private JButton btnNewButton;
+
+
 	private JButton btnMyPageUpdate;
+
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +83,7 @@ public class productSelectList extends JDialog {
 	public void initialize() {
 		frmDialog = new JFrame();
 		frmDialog.addWindowListener(new WindowAdapter() {
-			
+
 			@Override
 			public void windowActivated(WindowEvent e) {
 				tableInit();
@@ -84,8 +98,14 @@ public class productSelectList extends JDialog {
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
 		frmDialog.getContentPane().add(getLblCustomer_id());
+
+		frmDialog.getContentPane().add(getBtnNewButton());
+	}
+
+
 		frmDialog.getContentPane().add(getBtnMyPageUpdate());
 	}
+
 	private JLabel getProduct_name() {
 		if (product_name == null) {
 			product_name = new JLabel("신발 이름");
@@ -93,6 +113,7 @@ public class productSelectList extends JDialog {
 		}
 		return product_name;
 	}
+
 	private JTextField getTfShoesSelect() {
 		if (tfShoesSelect == null) {
 			tfShoesSelect = new JTextField();
@@ -101,21 +122,28 @@ public class productSelectList extends JDialog {
 		}
 		return tfShoesSelect;
 	}
+
 	private JButton getBtnShoesSelect() {
 		if (btnShoesSelect == null) {
 			btnShoesSelect = new JButton("검색");
 			btnShoesSelect.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+
+
+
+
 					
 					tableInit();
 					conditionQueryAction();
 					
+
 				}
 			});
 			btnShoesSelect.setBounds(320, 46, 91, 23);
 		}
 		return btnShoesSelect;
 	}
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -124,27 +152,31 @@ public class productSelectList extends JDialog {
 		}
 		return scrollPane;
 	}
-	
+
 	private JTable getInner_Table() {
 		if (Inner_Table == null) {
 			Inner_Table = new JTable();
 			Inner_Table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+
 					
 					if(e.getButton() == 1) {
 						tableClick();
 					}
 					
+
 				}
 			});
 			Inner_Table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			Inner_Table.setModel(Outer_Table);
 		}
+
 		
 		return Inner_Table;
 	}
 	
+
 	private JLabel getLblCustomer_id() {
 		if (lblCustomer_id == null) {
 			lblCustomer_id = new JLabel("New label");
@@ -152,6 +184,14 @@ public class productSelectList extends JDialog {
 		}
 		return lblCustomer_id;
 	}
+
+
+	// -----------------------------------------------------------
+
+	// Init the table
+	public void tableInit() {
+
+
 	
 	private JButton getBtnMyPageUpdate() {
 		if (btnMyPageUpdate == null) {
@@ -163,13 +203,13 @@ public class productSelectList extends JDialog {
 	
 	// ------------------------------------------------------------------------------------------
 	
-	// Init the table
-	public void tableInit() {
-	
+
 		Outer_Table.addColumn("순번");
 		Outer_Table.addColumn("이름");
 		Outer_Table.addColumn("가격");
 		Outer_Table.addColumn("수량");
+
+
 		
 		Outer_Table.setColumnCount(4);
 		
@@ -181,25 +221,62 @@ public class productSelectList extends JDialog {
 		
 		Inner_Table.setAutoResizeMode(Inner_Table.AUTO_RESIZE_OFF);
 		
+
 		int vColIndex = 0;
 		TableColumn col = Inner_Table.getColumnModel().getColumn(vColIndex);
 		int width = 30;
 		col.setPreferredWidth(width);
-		
+
 		vColIndex = 1;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
 		width = 140;
 		col.setPreferredWidth(width);
-		
+
 		vColIndex = 2;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
 		width = 124;
 		col.setPreferredWidth(width);
-		
+
 		vColIndex = 3;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
 		width = 80;
 		col.setPreferredWidth(width);
+
+
+	}
+
+	public void conditionQueryAction() {
+
+		ProductListDao dao = new ProductListDao(tfShoesSelect.getText().trim());
+		ArrayList<ProductListDto> dtoList = dao.productConditionList();
+
+		int listCount = dtoList.size();
+
+		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
+		for (int i = 0; i < listCount; i++) {
+			String temp = Integer.toString(dtoList.get(i).getProduct_id());
+			String[] qTxt = { temp, dtoList.get(i).getProduct_name(),
+					Integer.toString(dtoList.get(i).getProduct_price()),
+					Integer.toString(dtoList.get(i).getProduct_stock()) };
+			Outer_Table.addRow(qTxt);
+		}
+
+	}
+
+	// table Click
+	private void tableClick() {
+
+		int i = Inner_Table.getSelectedRow(); // 몇번째 줄 인지 알려줌
+		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
+		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
+
+		ProductOrder help = new ProductOrder();
+		help.productOrderList(Integer.parseInt(wkSequence));
+		help.setVisible(true); // 리스트 클릭 시 다음 페이지로 넘어감
+		frmDialog.setVisible(false);
+
+	}
+
 		
 	}
 	
@@ -233,29 +310,26 @@ public class productSelectList extends JDialog {
 		frmDialog.setVisible(false);
 		
 	}
+
+	// 주현 -- 내정보수정버튼
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("내정보수정");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
+					updateCustomerInfo.main(null);
+					JFrame jFrame = new JFrame();
+					jFrame.setVisible(false);
+				}
+			});
+			btnNewButton.setBounds(305, 5, 117, 29);
+		}
+		return btnNewButton;
+	}
+
+	// ----주현
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }// End Line
