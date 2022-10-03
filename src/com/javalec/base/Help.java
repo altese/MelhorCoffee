@@ -200,6 +200,7 @@ public class Help extends JDialog {
 	// 상품의 남은 수량을 확인하고 고객이 고른 상품 수량과 비교하는 메소드
 	private void productStockCheck() {
 		HelpDao dao = new HelpDao(Static_CustomerId.producdt_id);
+		System.out.println("Static_CustomerId:" + Static_CustomerId.producdt_id);
 		HelpDto dto = dao.productStockCheck();
 		
 		if(dto.getProduct_id() < Integer.parseInt((String)cbStock.getSelectedItem())) {
