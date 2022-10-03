@@ -15,7 +15,11 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.ActionEvent;
 
+
 public class Shoes_CustomerJoin {
+
+public class Shoes_CustomerJoin extends JFrame {
+
 
 	private JFrame frame;
 	private JLabel lblid;
@@ -23,6 +27,9 @@ public class Shoes_CustomerJoin {
 	private JTextField tfidinsert;
 	private JTextField tfpwinsert;
 	private JButton btnjoin;
+
+	private JButton btnBackPage;
+
 
 	/**
 	 * Launch the application.
@@ -61,6 +68,9 @@ public class Shoes_CustomerJoin {
 		frame.getContentPane().add(getTfidinsert());
 		frame.getContentPane().add(getTfpwinsert());
 		frame.getContentPane().add(getBtnjoin());
+
+		frame.getContentPane().add(getBtnBackPage());
+
 	}
 
 	private JLabel getLblid() {
@@ -109,6 +119,20 @@ public class Shoes_CustomerJoin {
 		return btnjoin;
 	}
 	
+
+	private JButton getBtnBackPage() {
+		if (btnBackPage == null) {
+			btnBackPage = new JButton("이전 페이지");
+			btnBackPage.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					backPage();
+				}
+			});
+			btnBackPage.setBounds(167, 188, 117, 29);
+		}
+		return btnBackPage;
+	}
+
 	
 	
 	
@@ -125,6 +149,10 @@ public class Shoes_CustomerJoin {
 		
 		if(insert == 1) {	
 			JOptionPane.showMessageDialog(null, "가입을 환영합니다.");
+
+			frame.setVisible(false);
+			LogIn.main(null);
+
 		}
 	
 	}
@@ -153,6 +181,7 @@ public class Shoes_CustomerJoin {
 		
 	}
 	
+
 //	private void deleteAction() {
 //		
 //		//sequence 넘버 정수로 바꾸기 
@@ -172,5 +201,11 @@ public class Shoes_CustomerJoin {
 	
 	
 	
+
+	private void backPage() {
+		LogIn.main(null);
+		frame.setVisible(false);
+	}
+
 	
 }
