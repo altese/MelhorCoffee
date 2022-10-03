@@ -44,9 +44,9 @@ public class CustomerListDao {
 
 			
 			// 쿼리 문장 만들기 (preparestatement)
-			String query = " insert into customer (customer_id, customer_pw) "; 
+			String query = " insert into customer (customer_id, customer_pw, customer_date) "; 
 																							
-			String query2 = " values (?,?) ";
+			String query2 = " values (?,?,now()) ";
 
 			
 			// 위의 쿼리 문장대로 순서대로 쓴다.
