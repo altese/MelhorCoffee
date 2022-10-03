@@ -33,6 +33,7 @@ public class LogIn extends JDialog {
 				try {
 					LogIn window = new LogIn();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
