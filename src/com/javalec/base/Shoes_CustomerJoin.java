@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Shoes_CustomerJoin {
+
 
 public class Shoes_CustomerJoin extends JFrame {
 

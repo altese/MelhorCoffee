@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import com.javalec.dao.KioskLogInDao;
 import com.javalec.dto.CustomerListDto;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

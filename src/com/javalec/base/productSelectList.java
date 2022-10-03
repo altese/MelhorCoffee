@@ -12,7 +12,7 @@ import javax.swing.table.TableColumn;
 import com.javalec.dao.ProductListDao;
 import com.javalec.dto.CustomerListDto;
 
-import com.javalec.dto.ProductOrderDto;
+//import com.javalec.dto.ProductOrderDto;
 import com.javalec.util.Static_CustomerId;
 
 import com.javalec.dto.HelpDto;
@@ -35,7 +35,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class productSelectList extends JFrame {
 
-public class productSelectList extends JDialog {
+
 
 
 	private JFrame frmDialog;
@@ -100,11 +100,11 @@ public class productSelectList extends JDialog {
 		frmDialog.getContentPane().add(getLblCustomer_id());
 
 		frmDialog.getContentPane().add(getBtnNewButton());
+//		frmDialog.getContentPane().add(getBtnMyPageUpdate());
 	}
 
 
-		frmDialog.getContentPane().add(getBtnMyPageUpdate());
-	}
+	
 
 	private JLabel getProduct_name() {
 		if (product_name == null) {
@@ -189,20 +189,21 @@ public class productSelectList extends JDialog {
 	// -----------------------------------------------------------
 
 	// Init the table
-	public void tableInit() {
+	
 
 
 	
-	private JButton getBtnMyPageUpdate() {
-		if (btnMyPageUpdate == null) {
-			btnMyPageUpdate = new JButton("내 정보 수정하기");
-			btnMyPageUpdate.setBounds(278, 10, 133, 23);
-		}
-		return btnMyPageUpdate;
-	}
+//	private JButton getBtnMyPageUpdate() {
+//		if (btnMyPageUpdate == null) {
+//			btnMyPageUpdate = new JButton("내 정보 수정하기");
+//			btnMyPageUpdate.setBounds(278, 10, 133, 23);
+//		}
+//		return btnMyPageUpdate;
+//	}
 	
 	// ------------------------------------------------------------------------------------------
 	
+	public void tableInit() {
 
 		Outer_Table.addColumn("순번");
 		Outer_Table.addColumn("이름");
@@ -245,23 +246,6 @@ public class productSelectList extends JDialog {
 
 	}
 
-	public void conditionQueryAction() {
-
-		ProductListDao dao = new ProductListDao(tfShoesSelect.getText().trim());
-		ArrayList<ProductListDto> dtoList = dao.productConditionList();
-
-		int listCount = dtoList.size();
-
-		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
-		for (int i = 0; i < listCount; i++) {
-			String temp = Integer.toString(dtoList.get(i).getProduct_id());
-			String[] qTxt = { temp, dtoList.get(i).getProduct_name(),
-					Integer.toString(dtoList.get(i).getProduct_price()),
-					Integer.toString(dtoList.get(i).getProduct_stock()) };
-			Outer_Table.addRow(qTxt);
-		}
-
-	}
 
 	// table Click
 	private void tableClick() {
@@ -270,7 +254,7 @@ public class productSelectList extends JDialog {
 		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
 		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
 
-		ProductOrder help = new ProductOrder();
+		Help help = new Help();
 		help.productOrderList(Integer.parseInt(wkSequence));
 		help.setVisible(true); // 리스트 클릭 시 다음 페이지로 넘어감
 		frmDialog.setVisible(false);
@@ -278,7 +262,7 @@ public class productSelectList extends JDialog {
 	}
 
 		
-	}
+	
 	
 	// 재품 리스트 출력
 	public void conditionQueryAction() {
@@ -297,19 +281,8 @@ public class productSelectList extends JDialog {
 		
 	}
 	
-	// 재품 리스트 중 원하는 재품 클릭 시 구매하기 창으로 이동
-	private void tableClick() {
-		
-		int i = Inner_Table.getSelectedRow(); // 몇번째 줄 인지 알려줌
-		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
-		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
-		
-		Help help = new Help();
-		help.productOrderList(Integer.parseInt(wkSequence));
-		help.setVisible(true);	// 리스트 클릭 시 다음 페이지로 넘어감
-		frmDialog.setVisible(false);
-		
-	}
+
+
 
 	// 주현 -- 내정보수정버튼
 	private JButton getBtnNewButton() {
