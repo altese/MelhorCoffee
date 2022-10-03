@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.ActionEvent;
 
-public class Shoes_CustomerJoin {
+public class Shoes_CustomerJoin extends JFrame {
 
 	private JFrame frame;
 	private JLabel lblid;
@@ -125,6 +125,8 @@ public class Shoes_CustomerJoin {
 		
 		if(insert == 1) {	
 			JOptionPane.showMessageDialog(null, "가입을 환영합니다.");
+			frame.setVisible(false);
+			productSelectList.main(null);
 		}
 	
 	}
