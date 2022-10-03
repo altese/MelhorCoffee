@@ -229,7 +229,9 @@ public class Help extends JDialog {
 			
 			// 10/03 한별수정 - 상품 구매 후 신발 리스트 출력 페이지로 이동,
 			// 구매 완료 후 상품 리스트로 돌아가는 문장
-			productSelectList.main(null);
+//			productSelectList.main(null);
+			OrderList orderList = new OrderList();
+			orderList.main(null);
 			boolean help = new Help() == null;
 			setVisible(help);
 			// ------------------------------------------
