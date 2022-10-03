@@ -15,7 +15,11 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.ActionEvent;
 
+
+public class Shoes_CustomerJoin {
+
 public class Shoes_CustomerJoin extends JFrame {
+
 
 	private JFrame frame;
 	private JLabel lblid;
@@ -23,7 +27,9 @@ public class Shoes_CustomerJoin extends JFrame {
 	private JTextField tfidinsert;
 	private JTextField tfpwinsert;
 	private JButton btnjoin;
+
 	private JButton btnBackPage;
+
 
 	/**
 	 * Launch the application.
@@ -62,7 +68,9 @@ public class Shoes_CustomerJoin extends JFrame {
 		frame.getContentPane().add(getTfidinsert());
 		frame.getContentPane().add(getTfpwinsert());
 		frame.getContentPane().add(getBtnjoin());
+
 		frame.getContentPane().add(getBtnBackPage());
+
 	}
 
 	private JLabel getLblid() {
@@ -111,6 +119,7 @@ public class Shoes_CustomerJoin extends JFrame {
 		return btnjoin;
 	}
 	
+
 	private JButton getBtnBackPage() {
 		if (btnBackPage == null) {
 			btnBackPage = new JButton("이전 페이지");
@@ -123,6 +132,7 @@ public class Shoes_CustomerJoin extends JFrame {
 		}
 		return btnBackPage;
 	}
+
 	
 	
 	
@@ -139,8 +149,10 @@ public class Shoes_CustomerJoin extends JFrame {
 		
 		if(insert == 1) {	
 			JOptionPane.showMessageDialog(null, "가입을 환영합니다.");
+
 			frame.setVisible(false);
 			LogIn.main(null);
+
 		}
 	
 	}
@@ -169,9 +181,31 @@ public class Shoes_CustomerJoin extends JFrame {
 		
 	}
 	
+
+//	private void deleteAction() {
+//		
+//		//sequence 넘버 정수로 바꾸기 
+//		String customer_id = tfidinsert.getText();
+//		
+//		Dao dao = new Dao(customer_id);					//연결 
+//		
+//		Boolean ok =  dao.deleteAction();			//리턴값 	
+//		
+//		if(ok == true) {
+//			JOptionPane.showMessageDialog(null, tfidinsert.getText() + "님의 정보가 삭제되었습니다.");
+//		}else {
+//			JOptionPane.showMessageDialog(null, "Db 작업중 문제가 발생했습니다. \n행정실로 문의 하세요!");
+//		}
+//		
+//	}
+	
+	
+	
+
 	private void backPage() {
 		LogIn.main(null);
 		frame.setVisible(false);
 	}
+
 	
 }
