@@ -140,7 +140,7 @@ public class Shoes_CustomerJoin extends JFrame {
 		if(insert == 1) {	
 			JOptionPane.showMessageDialog(null, "가입을 환영합니다.");
 			frame.setVisible(false);
-			productSelectList.main(null);
+			LogIn.main(null);
 		}
 	
 	}
