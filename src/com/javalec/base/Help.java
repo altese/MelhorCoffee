@@ -19,7 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 public class Help extends JDialog {
 	private JLabel lblProductName;
 	private JButton btnOrder;
-	private JFrame frmDialog;
+	private JFrame frame;
 	private JComboBox cbStock;
 	private JLabel lblproductPrice;
 	private JLabel lblProductPrice2;
@@ -37,10 +37,10 @@ public class Help extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help dialog = new Help();
-					dialog.frmDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.frmDialog.setVisible(true);
-					dialog.frmDialog.setLocationRelativeTo(null);
+					Help window = new Help();
+					window.frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,11 +49,11 @@ public class Help extends JDialog {
 	}
 
 	private void initialize() {
-		frmDialog = new JFrame();
-		frmDialog.setTitle("Dialog");
-		frmDialog.setBounds(100, 100, 450, 300);
-		frmDialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmDialog.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setTitle("Dialog");
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 	}
 	
 	/**

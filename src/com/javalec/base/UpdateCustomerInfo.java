@@ -8,10 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.javalec.dao.UpdateCustomerInfoDao;
-import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class UpdateCustomerInfo {
@@ -32,6 +33,7 @@ public class UpdateCustomerInfo {
 				try {
 					UpdateCustomerInfo window = new UpdateCustomerInfo();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,6 +53,12 @@ public class UpdateCustomerInfo {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				getCustomerId();
+			}
+		});
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -77,6 +85,7 @@ public class UpdateCustomerInfo {
 	private JTextField getTfId() {
 		if (tfId == null) {
 			tfId = new JTextField();
+			tfId.setEditable(false);
 			tfId.setBounds(195, 47, 130, 26);
 			tfId.setColumns(10);
 		}
@@ -106,6 +115,11 @@ public class UpdateCustomerInfo {
 		return btnUpdate;
 	}
 	
+	private void getCustomerId() {
+		
+		tfId.setText(Static_CustomerId.customer_id);
+	}
+	
 	private void updateAction() {
 
 		String customer_id = tfId.getText();
@@ -122,9 +136,7 @@ public class UpdateCustomerInfo {
 
 			Static_CustomerId.setCustomer_id(customer_id);
 
-			LogIn login = new LogIn();
-			login.main(null);
-			login.setVisible(true);
+			LogIn.main(null);
 			frame.setVisible(false);
 
 		} else {

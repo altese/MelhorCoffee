@@ -16,8 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Shoes_CustomerJoin {
-
 public class Shoes_CustomerJoin extends JFrame {
 
 
@@ -40,6 +38,7 @@ public class Shoes_CustomerJoin extends JFrame {
 				try {
 					Shoes_CustomerJoin window = new Shoes_CustomerJoin();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
