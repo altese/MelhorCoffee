@@ -89,7 +89,7 @@ public class Help extends JDialog {
 			btnOrder.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					productOrder();
+					productStockCheck();
 					
 				}
 			});
@@ -181,6 +181,7 @@ public class Help extends JDialog {
 	
 	// ---------------------------------------------------------------------------------------
 	
+	// 선택한 상품을 구매하기 위한 구매 목록 출력
 	public void productOrderList(int wkSequence) {
 		
 		HelpDao dao = new HelpDao(wkSequence);
@@ -191,8 +192,28 @@ public class Help extends JDialog {
 		lblProductPrice2.setText(Integer.toString(dto.getProduct_price()));
 		lblproductPrice.setText(Integer.toString(dto.getProduct_price()));
 		
+		// productStockCheck 메소드에서 필요한 재품코드 넘겨주기
+		Static_CustomerId.setProducdt_id(dto.getProduct_id());
+		
 	}
 
+	// 상품의 남은 수량을 확인하고 고객이 고른 상품 수량과 비교하는 메소드
+	private void productStockCheck() {
+		HelpDao dao = new HelpDao(Static_CustomerId.producdt_id);
+		HelpDto dto = dao.productStockCheck();
+		
+		if(dto.getProduct_id() < Integer.parseInt((String)cbStock.getSelectedItem())) {
+			// 남은 재고가 고객이 고른 수량보다 적을 때
+			JOptionPane.showMessageDialog(null, "남은 재고가 " + dto.getProduct_id() + "개 입니다. \n" + dto.getProduct_id() + "개 이하로 선택하세요.");
+			
+		}else {
+			// 고객이 고른 수량이 구매가 가능할 때
+			productOrder();
+			
+		}
+	}
+	
+	// 구매하기 버튼을 누르면 orders 테이블에 insert 해주는 메소드
 	private void productOrder() {
 		
 		int product_id = Integer.parseInt(lblProductId.getText().trim());
@@ -206,7 +227,8 @@ public class Help extends JDialog {
 			JOptionPane.showMessageDialog(null, "상품 구매가 완료 되었습니다.");
 			dao.productStockOut(product_id, product_stock);
 			
-			// 10/03 한별수정 - 상품 구매 후 신발 리스트 출력 페이지로 이동
+			// 10/03 한별수정 - 상품 구매 후 신발 리스트 출력 페이지로 이동,
+			// 구매 완료 후 상품 리스트로 돌아가는 문장
 			productSelectList.main(null);
 			boolean help = new Help() == null;
 			setVisible(help);
@@ -217,11 +239,14 @@ public class Help extends JDialog {
 		}
 	}
 
+	
+	// 구매 창에서 콤보박스에서 고른 수량 만큼 totalprice에 값 변경해주는 메소드
 	public void productOrder2() {
 		lblproductPrice.setText(Integer.toString(Integer.parseInt((String)lblProductPrice2.getText()) * Integer.parseInt((String)cbStock.getSelectedItem())));
 		
 	}
 	
+	// 구매 창에서 이전 페이지 << 버튼 클릭시 재품리스트 나오는 페이지로 이동하는 메소드
 	public void backPage() {
 		productSelectList.main(null);
 		boolean help = new Help() == null;

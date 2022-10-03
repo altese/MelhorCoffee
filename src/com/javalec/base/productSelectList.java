@@ -38,6 +38,7 @@ public class productSelectList extends JDialog {
 
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JLabel lblCustomer_id;
+	private JButton btnMyPageUpdate;
 	/**
 	 * Launch the application.
 	 */
@@ -83,6 +84,7 @@ public class productSelectList extends JDialog {
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
 		frmDialog.getContentPane().add(getLblCustomer_id());
+		frmDialog.getContentPane().add(getBtnMyPageUpdate());
 	}
 	private JLabel getProduct_name() {
 		if (product_name == null) {
@@ -151,11 +153,19 @@ public class productSelectList extends JDialog {
 		return lblCustomer_id;
 	}
 	
-	// -----------------------------------------------------------
+	private JButton getBtnMyPageUpdate() {
+		if (btnMyPageUpdate == null) {
+			btnMyPageUpdate = new JButton("내 정보 수정하기");
+			btnMyPageUpdate.setBounds(278, 10, 133, 23);
+		}
+		return btnMyPageUpdate;
+	}
+	
+	// ------------------------------------------------------------------------------------------
 	
 	// Init the table
-		public void tableInit() {
-		
+	public void tableInit() {
+	
 		Outer_Table.addColumn("순번");
 		Outer_Table.addColumn("이름");
 		Outer_Table.addColumn("가격");
@@ -164,6 +174,7 @@ public class productSelectList extends JDialog {
 		Outer_Table.setColumnCount(4);
 		
 		int i = Outer_Table.getRowCount();
+		
 		for(int j = 0; j < i; j++) {
 			Outer_Table.removeRow(0);
 		}
@@ -192,7 +203,7 @@ public class productSelectList extends JDialog {
 		
 	}
 	
-	
+	// 재품 리스트 출력
 	public void conditionQueryAction() {
 		
 		ProductListDao dao = new ProductListDao(tfShoesSelect.getText().trim());
@@ -209,7 +220,7 @@ public class productSelectList extends JDialog {
 		
 	}
 	
-	// table Click
+	// 재품 리스트 중 원하는 재품 클릭 시 구매하기 창으로 이동
 	private void tableClick() {
 		
 		int i = Inner_Table.getSelectedRow(); // 몇번째 줄 인지 알려줌
@@ -222,6 +233,7 @@ public class productSelectList extends JDialog {
 		frmDialog.setVisible(false);
 		
 	}
+	
 	
 	
 	
