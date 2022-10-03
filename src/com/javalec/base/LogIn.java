@@ -15,6 +15,8 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.Color;
 
 public class LogIn extends JDialog {
 
@@ -105,29 +107,26 @@ public class LogIn extends JDialog {
 		});
 		btnLogIn.setBounds(320, 209, 91, 23);
 		frame.getContentPane().add(btnLogIn);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(256, 40, 78, 15);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("계정이 없다면...");
+		lblNewLabel_3.setForeground(new Color(0, 0, 255));
+		lblNewLabel_3.setBounds(215, 40, 91, 15);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JButton btnNewButton = new JButton("가입하기 ");
+		//***********************회원 가입 버튼 이벤트*****************************
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				Shoes_CustomerJoin shoes_CustomerJoin = new Shoes_CustomerJoin();
+				shoes_CustomerJoin.main(null);
+			}
+		});
+		btnNewButton.setBounds(320, 36, 91, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
-	//--------------------------------------
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
