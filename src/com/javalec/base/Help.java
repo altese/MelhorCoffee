@@ -246,7 +246,6 @@ public class Help extends JDialog {
 		
 	}
 	
-	// 구매 창에서 '이전 페이지' << 버튼 클릭시 재품리스트 나오는 페이지로 이동하는 메소드
 	public void backPage() {
 		productSelectList.main(null);
 		boolean help = new Help() == null;
