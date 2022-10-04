@@ -18,6 +18,7 @@ import com.javalec.util.Static_CustomerId;
 import com.javalec.dto.HelpDto;
 
 import com.javalec.dto.ProductListDto;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

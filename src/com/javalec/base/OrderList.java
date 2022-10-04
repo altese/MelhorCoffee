@@ -12,6 +12,7 @@ import javax.swing.table.TableColumn;
 
 import com.javalec.dao.OrderListDao;
 import com.javalec.dto.OrderListDto;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.WindowAdapter;

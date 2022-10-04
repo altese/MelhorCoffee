@@ -38,6 +38,7 @@ public class KioskLogInDao {
 			Connection conn_mysql = DriverManager.getConnection(DBConnect.url_mysql, DBConnect.id_mysql,
 					DBConnect.pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
+			
 			ResultSet rs = stmt_mysql.executeQuery(query1 + query2);
 
 			while (rs.next()) {
