@@ -61,7 +61,7 @@ public class Help extends JDialog {
 	 * Create the dialog.
 	 */
 	public Help() {
-		setTitle("Help");
+		setTitle("제품 구매");
 		setBounds(100, 100, 358, 300);
 		getContentPane().setLayout(null);
 		getContentPane().add(getLblProductName());

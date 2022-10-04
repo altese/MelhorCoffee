@@ -57,6 +57,9 @@ public class OrderList extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+
+		frame.setTitle("주문 내역");
+
 		//*************************윈도우 이벤트*******************
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
@@ -143,8 +146,9 @@ public class OrderList extends JFrame {
 
 		// 위의 데이터 행의 수만큼 정보 출력
 		for (int index = 0; index < listCount; index++) {
-			String temp = Integer.toString(Static_CustomerId.producdt_id); // temp: seqno 할당
-			String[] qTxt = { temp, dtoList.get(index).getProduct_name(), Integer.toString(dtoList.get(index).getOrder_quantity()),
+
+			String[] qTxt = { Integer.toString(dtoList.get(index).getOrder_id()), dtoList.get(index).getProduct_name(), Integer.toString(dtoList.get(index).getOrder_quantity()),
+
 					Integer.toString(dtoList.get(index).getOrder_price()) }; // 1행의 박스 할당
 			Outer_Table.addRow(qTxt); // 출력
 		}
@@ -155,7 +159,9 @@ public class OrderList extends JFrame {
 	public void backPage() {
 		productSelectList.main(null);
 //		boolean OrderList = new OrderList() == null;
-		setVisible(false);
+
+		frame.setVisible(false);
+
 	}
 	
 	
