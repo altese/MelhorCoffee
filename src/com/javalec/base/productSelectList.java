@@ -76,6 +76,7 @@ public class productSelectList extends JFrame {
 	 */
 	public void initialize() {
 		frmDialog = new JFrame();
+		frmDialog.setTitle("제품 검색");
 		frmDialog.addWindowListener(new WindowAdapter() {
 
 			@Override

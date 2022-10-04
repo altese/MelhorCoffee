@@ -56,6 +56,7 @@ public class OrderList extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("주문 내역");
 		//*************************윈도우 이벤트*******************
 		frame.addWindowListener(new WindowAdapter() {
 			@Override

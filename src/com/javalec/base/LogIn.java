@@ -53,6 +53,7 @@ public class LogIn extends JDialog {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("로그인 페이지");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

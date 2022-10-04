@@ -53,6 +53,7 @@ public class UpdateCustomerInfo {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("내 정보 수정");
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {
