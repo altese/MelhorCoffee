@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -58,6 +59,7 @@ public class productSelectList extends JFrame {
 					productSelectList window = new productSelectList();
 					window.frmDialog.setVisible(true);
 					window.frmDialog.setLocationRelativeTo(null);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -86,7 +88,7 @@ public class productSelectList extends JFrame {
 				conditionQueryAction();
 			}
 		});
-		frmDialog.setBounds(100, 100, 450, 300);
+		frmDialog.setBounds(100, 100, 510, 330);
 		frmDialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDialog.getContentPane().setLayout(null);
 		frmDialog.getContentPane().add(getProduct_name());
@@ -114,7 +116,7 @@ public class productSelectList extends JFrame {
 	private JTextField getTfShoesSelect() {
 		if (tfShoesSelect == null) {
 			tfShoesSelect = new JTextField();
-			tfShoesSelect.setBounds(103, 47, 197, 21);
+			tfShoesSelect.setBounds(103, 47, 257, 21);
 			tfShoesSelect.setColumns(10);
 		}
 		return tfShoesSelect;
@@ -136,7 +138,7 @@ public class productSelectList extends JFrame {
 
 				}
 			});
-			btnShoesSelect.setBounds(320, 46, 91, 23);
+			btnShoesSelect.setBounds(372, 46, 91, 23);
 		}
 		return btnShoesSelect;
 	}
@@ -144,7 +146,7 @@ public class productSelectList extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(35, 79, 377, 161);
+			scrollPane.setBounds(35, 79, 428, 170);
 			scrollPane.setViewportView(getInner_Table());
 		}
 		return scrollPane;
@@ -190,7 +192,7 @@ public class productSelectList extends JFrame {
 					logOutAction();
 				}
 			});
-			btnLogOut.setBounds(183, 5, 117, 29);
+			btnLogOut.setBounds(269, 5, 91, 29);
 		}
 		return btnLogOut;
 	}
@@ -201,20 +203,26 @@ public class productSelectList extends JFrame {
 				btnNewButton = new JButton("내정보수정");
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-
-//						UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
-						UpdateCustomerInfo.main(null);
-//						JFrame jFrame = new JFrame();
-						frmDialog.setVisible(false);
+						
+						if(Static_CustomerId.customer_id == null) {
+							JOptionPane.showMessageDialog(null, "로그인 하세요.");
+							LogIn.main(null);
+							frmDialog.setVisible(false);
+						} else {
+							UpdateCustomerInfo.main(null);
+							frmDialog.setVisible(false);
+							
+						}
 					}
 				});
-				btnNewButton.setBounds(305, 5, 117, 29);
+				btnNewButton.setBounds(366, 5, 97, 29);
 			}
 			return btnNewButton;
 		}
-	
+		
 	// ------------------------------------------------------------------------------------------
 	
+		
 	// Init the table
 	public void tableInit() {
 
@@ -223,8 +231,6 @@ public class productSelectList extends JFrame {
 		Outer_Table.addColumn("가격");
 		Outer_Table.addColumn("수량");
 
-
-		
 		Outer_Table.setColumnCount(4);
 		
 		int i = Outer_Table.getRowCount();
@@ -243,17 +249,17 @@ public class productSelectList extends JFrame {
 
 		vColIndex = 1;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
-		width = 140;
+		width = 170;
 		col.setPreferredWidth(width);
 
 		vColIndex = 2;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
-		width = 124;
+		width = 134;
 		col.setPreferredWidth(width);
 
 		vColIndex = 3;
 		col = Inner_Table.getColumnModel().getColumn(vColIndex);
-		width = 80;
+		width = 90;
 		col.setPreferredWidth(width);
 
 
@@ -267,7 +273,13 @@ public class productSelectList extends JFrame {
 		
 		int listCount = dtoList.size();
 		
-		lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
+		if(Static_CustomerId.customer_id == null) {
+			lblCustomer_id.setText("로그인 하세요");
+		}else {
+			
+			lblCustomer_id.setText(Static_CustomerId.customer_id + "님 환영합니다.");
+		}
+		
 		for(int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(dtoList.get(i).getProduct_id());
 			String[] qTxt = {temp, dtoList.get(i).getProduct_name(), Integer.toString(dtoList.get(i).getProduct_price()), Integer.toString(dtoList.get(i).getProduct_stock())};
@@ -296,6 +308,7 @@ public class productSelectList extends JFrame {
 		LogIn.main(null);
 		frmDialog.setVisible(false);
 	}
+	
 	
 	
 }// End Line
