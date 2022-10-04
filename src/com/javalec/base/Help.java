@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import com.javalec.dao.HelpDao;
 import com.javalec.dto.HelpDto;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -254,4 +255,4 @@ public class Help extends JDialog {
 		setVisible(help);
 	}
 	
-} // End Line
+} // End Line //test

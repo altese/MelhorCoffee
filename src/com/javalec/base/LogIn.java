@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import com.javalec.dao.KioskLogInDao;
 import com.javalec.dto.CustomerListDto;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -22,7 +23,7 @@ public class LogIn extends JDialog {
 
 	private JFrame frame;
 	private JTextField tfIdInsert;
-	private JTextField tfPwInsert;
+	private JPasswordField tfPwInsert;
 
 	/**
 	 * Launch the application.
@@ -75,11 +76,6 @@ public class LogIn extends JDialog {
 		lblNewLabel_1_1.setBounds(67, 148, 50, 15);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
-		tfPwInsert = new JTextField();
-		tfPwInsert.setColumns(10);
-		tfPwInsert.setBounds(154, 145, 205, 21);
-		frame.getContentPane().add(tfPwInsert);
-		
 		JButton btnLogIn = new JButton("LOG IN");
 		// ************************** 로그인 버튼 이벤트 ********************************
 		btnLogIn.addActionListener(new ActionListener() {
@@ -87,6 +83,8 @@ public class LogIn extends JDialog {
 				
 				String custId = tfIdInsert.getText().trim();
 				String custPw = tfPwInsert.getText().trim();
+				
+				
 				
 				KioskLogInDao kioskLogInDao = new KioskLogInDao(custId, custPw);
 				
@@ -130,5 +128,9 @@ public class LogIn extends JDialog {
 		});
 		btnNewButton.setBounds(320, 36, 91, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		tfPwInsert = new JPasswordField();
+		tfPwInsert.setBounds(154, 145, 205, 21);
+		frame.getContentPane().add(tfPwInsert);
 	}
 }
