@@ -1,4 +1,4 @@
-package com.javalec.base;
+package com.javalec.util;
 
 public class Static_CustomerId {
 
