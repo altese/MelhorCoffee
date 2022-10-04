@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
+import com.javalec.util.Static_CustomerId;
 import com.javalec.dto.OrderListDto;
 import com.javalec.util.DBConnect;
 import com.javalec.util.Static_CustomerId;
