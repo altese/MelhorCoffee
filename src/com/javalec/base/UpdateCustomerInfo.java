@@ -12,8 +12,10 @@ import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import java.awt.event.ActionEvent;
 
 public class UpdateCustomerInfo {
@@ -25,6 +27,7 @@ public class UpdateCustomerInfo {
 	private JTextField tfPw;
 	private JButton btnUpdate;
 	private JButton btnBack;
+
 
 	/**
 	 * Launch the application.
@@ -62,6 +65,7 @@ public class UpdateCustomerInfo {
 				getCustomerId();
 			}
 		});
+
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -71,6 +75,7 @@ public class UpdateCustomerInfo {
 		frame.getContentPane().add(getTfPw());
 		frame.getContentPane().add(getBtnUpdate());
 		frame.getContentPane().add(getBtnBack());
+
 	}
 	private JLabel getLblid() {
 		if (lblid == null) {
@@ -119,11 +124,13 @@ public class UpdateCustomerInfo {
 		return btnUpdate;
 	}
 	
+
 	private void getCustomerId() {
 		
 		tfId.setText(Static_CustomerId.customer_id);
 	}
 	
+
 	private void updateAction() {
 
 		String customer_id = tfId.getText();
@@ -140,7 +147,10 @@ public class UpdateCustomerInfo {
 
 			Static_CustomerId.setCustomer_id(customer_id);
 
-			LogIn.main(null);
+
+			LogIn login = new LogIn();
+			login.main(null);
+			login.setVisible(true);
 			frame.setVisible(false);
 
 		} else {
@@ -171,6 +181,7 @@ public class UpdateCustomerInfo {
 		return i;
 
 	}
+
 	private JButton getBtnBack() {
 		if (btnBack == null) {
 			btnBack = new JButton("이전 페이지");
@@ -191,13 +202,6 @@ public class UpdateCustomerInfo {
 		boolean UpdateCustomerInfo = new UpdateCustomerInfo() == null;
 		frame.setVisible(UpdateCustomerInfo);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

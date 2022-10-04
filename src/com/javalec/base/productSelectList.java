@@ -12,10 +12,10 @@ import javax.swing.table.TableColumn;
 import com.javalec.dao.ProductListDao;
 import com.javalec.dto.CustomerListDto;
 
-//import com.javalec.dto.ProductOrderDto;
+import com.javalec.dto.ProductOrderDto;
 import com.javalec.util.Static_CustomerId;
 
-import com.javalec.dto.HelpDto;
+//import com.javalec.dto.HelpDto;
 
 import com.javalec.dto.ProductListDto;
 
@@ -36,6 +36,7 @@ import javax.swing.ScrollPaneConstants;
 public class productSelectList extends JFrame {
 
 
+
 	private JFrame frmDialog;
 	private JLabel product_name;
 	private JTextField tfShoesSelect;
@@ -47,6 +48,7 @@ public class productSelectList extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnMyPageUpdate;
 	private JButton btnLogOut;
+
 
 	/**
 	 * Launch the application.
@@ -94,13 +96,12 @@ public class productSelectList extends JFrame {
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
 		frmDialog.getContentPane().add(getLblCustomer_id());
-
 		frmDialog.getContentPane().add(getBtnNewButton());
 		frmDialog.getContentPane().add(getBtnLogOut());
 	}
 
 
-//		frmDialog.getContentPane().add(getBtnMyPageUpdate());
+
 	
 
 	private JLabel getProduct_name() {
@@ -127,9 +128,6 @@ public class productSelectList extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 
-
-
-					
 					tableInit();
 					conditionQueryAction();
 					
@@ -212,10 +210,10 @@ public class productSelectList extends JFrame {
 			}
 			return btnNewButton;
 		}
+
 	
 	// ------------------------------------------------------------------------------------------
 	
-	// Init the table
 	public void tableInit() {
 
 		Outer_Table.addColumn("순번");
@@ -259,6 +257,25 @@ public class productSelectList extends JFrame {
 
 	}
 
+
+
+	// table Click
+	private void tableClick() {
+
+		int i = Inner_Table.getSelectedRow(); // 몇번째 줄 인지 알려줌
+		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
+		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
+
+		ProductOrder help = new ProductOrder();
+		help.productOrderList(Integer.parseInt(wkSequence));
+		help.setVisible(true); // 리스트 클릭 시 다음 페이지로 넘어감
+		frmDialog.setVisible(false);
+
+	}
+
+		
+	
+
 	// 재품 리스트 출력
 	public void conditionQueryAction() {
 		
@@ -276,19 +293,7 @@ public class productSelectList extends JFrame {
 		
 	}
 	
-	// 재품 리스트 중 원하는 재품 클릭 시 구매하기 창으로 이동
-	private void tableClick() {
-		
-		int i = Inner_Table.getSelectedRow(); // 몇번째 줄 인지 알려줌
-		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
-		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
-		
-		Help help = new Help();
-		help.productOrderList(Integer.parseInt(wkSequence));
-		help.setVisible(true);	// 리스트 클릭 시 다음 페이지로 넘어감
-		frmDialog.setVisible(false);
-		
-	}
+
 
 	
 	
@@ -298,4 +303,5 @@ public class productSelectList extends JFrame {
 	}
 	
 	
+
 }// End Line
