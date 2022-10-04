@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.javalec.dao.UpdateCustomerInfoDao;
+import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

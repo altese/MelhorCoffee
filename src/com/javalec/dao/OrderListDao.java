@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.javalec.base.Static_CustomerId;
+import com.javalec.util.Static_CustomerId;
+//import com.javalec.base.Static_CustomerId;
 import com.javalec.dto.OrderListDto;
 import com.javalec.util.DBConnect;
 
