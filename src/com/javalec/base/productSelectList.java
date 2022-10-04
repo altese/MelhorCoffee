@@ -46,6 +46,7 @@ public class productSelectList extends JFrame {
 	private JLabel lblCustomer_id;
 	private JButton btnNewButton;
 	private JButton btnMyPageUpdate;
+	private JButton btnLogOut;
 
 	/**
 	 * Launch the application.
@@ -95,6 +96,7 @@ public class productSelectList extends JFrame {
 		frmDialog.getContentPane().add(getLblCustomer_id());
 
 		frmDialog.getContentPane().add(getBtnNewButton());
+		frmDialog.getContentPane().add(getBtnLogOut());
 	}
 
 
@@ -180,14 +182,36 @@ public class productSelectList extends JFrame {
 		return lblCustomer_id;
 	}
 
+	private JButton getBtnLogOut() {
+		if (btnLogOut == null) {
+			btnLogOut = new JButton("로그아웃");
+			btnLogOut.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					logOutAction();
+				}
+			});
+			btnLogOut.setBounds(183, 5, 117, 29);
+		}
+		return btnLogOut;
+	}
 
-//	private JButton getBtnMyPageUpdate() {
-//		if (btnMyPageUpdate == null) {
-//			btnMyPageUpdate = new JButton("내 정보 수정하기");
-//			btnMyPageUpdate.setBounds(278, 10, 133, 23);
-//		}
-//		return btnMyPageUpdate;
-//	}
+	// 주현 -- 내정보수정버튼
+		private JButton getBtnNewButton() {
+			if (btnNewButton == null) {
+				btnNewButton = new JButton("내정보수정");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+
+//						UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
+						UpdateCustomerInfo.main(null);
+//						JFrame jFrame = new JFrame();
+						frmDialog.setVisible(false);
+					}
+				});
+				btnNewButton.setBounds(305, 5, 117, 29);
+			}
+			return btnNewButton;
+		}
 	
 	// ------------------------------------------------------------------------------------------
 	
@@ -266,25 +290,12 @@ public class productSelectList extends JFrame {
 		
 	}
 
-	// 주현 -- 내정보수정버튼
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("내정보수정");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-//					UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
-					UpdateCustomerInfo.main(null);
-//					JFrame jFrame = new JFrame();
-					frmDialog.setVisible(false);
-				}
-			});
-			btnNewButton.setBounds(305, 5, 117, 29);
-		}
-		return btnNewButton;
-	}
-
-	// ----주현
 	
-
+	
+	private void logOutAction() {
+		LogIn.main(null);
+		frmDialog.setVisible(false);
+	}
+	
+	
 }// End Line
