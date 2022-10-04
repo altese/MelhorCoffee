@@ -13,7 +13,7 @@ import com.javalec.dao.ProductListDao;
 import com.javalec.dto.CustomerListDto;
 
 //import com.javalec.dto.ProductOrderDto;
-import com.javalec.base.Static_CustomerId;
+import com.javalec.util.Static_CustomerId;
 
 import com.javalec.dto.HelpDto;
 
