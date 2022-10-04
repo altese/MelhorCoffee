@@ -15,7 +15,9 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.ActionEvent;
 
+
 public class Shoes_CustomerJoin extends JFrame {
+
 
 	private JFrame frame;
 	private JLabel lblid;
@@ -26,6 +28,7 @@ public class Shoes_CustomerJoin extends JFrame {
 
 	private JButton btnBackPage;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -35,6 +38,7 @@ public class Shoes_CustomerJoin extends JFrame {
 				try {
 					Shoes_CustomerJoin window = new Shoes_CustomerJoin();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -120,6 +124,7 @@ public class Shoes_CustomerJoin extends JFrame {
 		return btnjoin;
 	}
 
+
 	private JButton getBtnBackPage() {
 		if (btnBackPage == null) {
 			btnBackPage = new JButton("이전 페이지");
@@ -133,6 +138,7 @@ public class Shoes_CustomerJoin extends JFrame {
 		return btnBackPage;
 	}
 
+
 	private void insertAction() {
 
 		String customer_id = tfidinsert.getText();
@@ -143,10 +149,12 @@ public class Shoes_CustomerJoin extends JFrame {
 		int insert = dao.insertAction();
 		
 		
+
 		JOptionPane.showMessageDialog(null, "가입을 환영합니다.");
 
 		frame.setVisible(false);
 		LogIn.main(null);
+
 
 
 	}
@@ -174,10 +182,12 @@ public class Shoes_CustomerJoin extends JFrame {
 
 	}
 
+
 	private void backPage() {
 		LogIn.main(null);
 		frame.setVisible(false);
 	}
+
 
 	private void customer_idCheck() {
 		String customer_id = tfidinsert.getText();
@@ -187,9 +197,9 @@ public class Shoes_CustomerJoin extends JFrame {
 		if (check == 1) {
 			JOptionPane.showMessageDialog(null, "다른 아이디를 사용해주세요.");
 		} else {
-//			JOptionPane.showMessageDialog(null, "가입이 완료 되었습니다.");
 			insertAction();
 		}
+
 	
 
 	}

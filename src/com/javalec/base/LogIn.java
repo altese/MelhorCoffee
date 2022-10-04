@@ -23,7 +23,7 @@ public class LogIn extends JDialog {
 
 	private JFrame frame;
 	private JTextField tfIdInsert;
-	private JTextField tfPwInsert;
+	private JPasswordField tfPwInsert;
 
 	/**
 	 * Launch the application.
@@ -34,6 +34,7 @@ public class LogIn extends JDialog {
 				try {
 					LogIn window = new LogIn();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,6 +54,7 @@ public class LogIn extends JDialog {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("로그인 페이지");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -74,11 +76,6 @@ public class LogIn extends JDialog {
 		lblNewLabel_1_1.setBounds(67, 148, 50, 15);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
-		tfPwInsert = new JTextField();
-		tfPwInsert.setColumns(10);
-		tfPwInsert.setBounds(154, 145, 205, 21);
-		frame.getContentPane().add(tfPwInsert);
-		
 		JButton btnLogIn = new JButton("LOG IN");
 		// ************************** 로그인 버튼 이벤트 ********************************
 		btnLogIn.addActionListener(new ActionListener() {
@@ -86,6 +83,8 @@ public class LogIn extends JDialog {
 				
 				String custId = tfIdInsert.getText().trim();
 				String custPw = tfPwInsert.getText().trim();
+				
+				
 				
 				KioskLogInDao kioskLogInDao = new KioskLogInDao(custId, custPw);
 				
@@ -129,5 +128,9 @@ public class LogIn extends JDialog {
 		});
 		btnNewButton.setBounds(320, 36, 91, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		tfPwInsert = new JPasswordField();
+		tfPwInsert.setBounds(154, 145, 205, 21);
+		frame.getContentPane().add(tfPwInsert);
 	}
 }

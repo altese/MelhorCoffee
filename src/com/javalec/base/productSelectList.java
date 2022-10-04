@@ -12,10 +12,10 @@ import javax.swing.table.TableColumn;
 import com.javalec.dao.ProductListDao;
 import com.javalec.dto.CustomerListDto;
 
-//import com.javalec.dto.ProductOrderDto;
+import com.javalec.dto.ProductOrderDto;
 import com.javalec.util.Static_CustomerId;
 
-import com.javalec.dto.HelpDto;
+//import com.javalec.dto.HelpDto;
 
 import com.javalec.dto.ProductListDto;
 
@@ -37,21 +37,18 @@ public class productSelectList extends JFrame {
 
 
 
-
 	private JFrame frmDialog;
 	private JLabel product_name;
 	private JTextField tfShoesSelect;
 	private JButton btnShoesSelect;
 	private JScrollPane scrollPane;
 	private JTable Inner_Table;
-
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JLabel lblCustomer_id;
-
 	private JButton btnNewButton;
-
-
 	private JButton btnMyPageUpdate;
+	private JButton btnLogOut;
+
 
 	/**
 	 * Launch the application.
@@ -82,6 +79,7 @@ public class productSelectList extends JFrame {
 	 */
 	public void initialize() {
 		frmDialog = new JFrame();
+		frmDialog.setTitle("제품 검색");
 		frmDialog.addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -98,10 +96,10 @@ public class productSelectList extends JFrame {
 		frmDialog.getContentPane().add(getBtnShoesSelect());
 		frmDialog.getContentPane().add(getScrollPane());
 		frmDialog.getContentPane().add(getLblCustomer_id());
-
 		frmDialog.getContentPane().add(getBtnNewButton());
-//		frmDialog.getContentPane().add(getBtnMyPageUpdate());
+		frmDialog.getContentPane().add(getBtnLogOut());
 	}
+
 
 
 	
@@ -130,9 +128,6 @@ public class productSelectList extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 
-
-
-					
 					tableInit();
 					conditionQueryAction();
 					
@@ -185,21 +180,37 @@ public class productSelectList extends JFrame {
 		return lblCustomer_id;
 	}
 
+	private JButton getBtnLogOut() {
+		if (btnLogOut == null) {
+			btnLogOut = new JButton("로그아웃");
+			btnLogOut.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					logOutAction();
+				}
+			});
+			btnLogOut.setBounds(183, 5, 117, 29);
+		}
+		return btnLogOut;
+	}
 
-	// -----------------------------------------------------------
+	// 주현 -- 내정보수정버튼
+		private JButton getBtnNewButton() {
+			if (btnNewButton == null) {
+				btnNewButton = new JButton("내정보수정");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 
-	// Init the table
-	
+//						UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
+						UpdateCustomerInfo.main(null);
+//						JFrame jFrame = new JFrame();
+						frmDialog.setVisible(false);
+					}
+				});
+				btnNewButton.setBounds(305, 5, 117, 29);
+			}
+			return btnNewButton;
+		}
 
-
-	
-//	private JButton getBtnMyPageUpdate() {
-//		if (btnMyPageUpdate == null) {
-//			btnMyPageUpdate = new JButton("내 정보 수정하기");
-//			btnMyPageUpdate.setBounds(278, 10, 133, 23);
-//		}
-//		return btnMyPageUpdate;
-//	}
 	
 	// ------------------------------------------------------------------------------------------
 	
@@ -247,6 +258,7 @@ public class productSelectList extends JFrame {
 	}
 
 
+
 	// table Click
 	private void tableClick() {
 
@@ -254,7 +266,7 @@ public class productSelectList extends JFrame {
 		String wkSequence = (String) Inner_Table.getValueAt(i, 0); // i번째 행의 0번째(Seqno) 값을 wkSequence에 넣어줌
 		ProductListDao dao = new ProductListDao(Integer.parseInt(wkSequence));
 
-		Help help = new Help();
+		ProductOrder help = new ProductOrder();
 		help.productOrderList(Integer.parseInt(wkSequence));
 		help.setVisible(true); // 리스트 클릭 시 다음 페이지로 넘어감
 		frmDialog.setVisible(false);
@@ -263,7 +275,7 @@ public class productSelectList extends JFrame {
 
 		
 	
-	
+
 	// 재품 리스트 출력
 	public void conditionQueryAction() {
 		
@@ -283,26 +295,13 @@ public class productSelectList extends JFrame {
 	
 
 
-
-	// 주현 -- 내정보수정버튼
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("내정보수정");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-					UpdateCustomerInfo updateCustomerInfo = new UpdateCustomerInfo();
-					updateCustomerInfo.main(null);
-					JFrame jFrame = new JFrame();
-					jFrame.setVisible(false);
-				}
-			});
-			btnNewButton.setBounds(305, 5, 117, 29);
-		}
-		return btnNewButton;
+	
+	
+	private void logOutAction() {
+		LogIn.main(null);
+		frmDialog.setVisible(false);
 	}
-
-	// ----주현
+	
 	
 
 }// End Line

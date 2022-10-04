@@ -40,9 +40,11 @@ public class CustomerListDao {
 					DBConnect.pw_mysql); // database에 접근을 하겠다. (선언자, 아직 실행 단계 x)
 
 			// 쿼리 문장 만들기 (preparestatement)
-			String query = " insert into customer (customer_id, customer_pw) ";
 
-			String query2 = " values (?,?) ";
+			String query = " insert into customer (customer_id, customer_pw, customer_date) "; 
+																							
+			String query2 = " values (?,?,now()) ";
+
 
 			// 위의 쿼리 문장대로 순서대로 쓴다.
 			ps = conn_mysql.prepareStatement(query + query2);

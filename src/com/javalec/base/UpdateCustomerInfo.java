@@ -12,6 +12,10 @@ import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import java.awt.event.ActionEvent;
 
 public class UpdateCustomerInfo {
@@ -22,6 +26,8 @@ public class UpdateCustomerInfo {
 	private JTextField tfId;
 	private JTextField tfPw;
 	private JButton btnUpdate;
+	private JButton btnBack;
+
 
 	/**
 	 * Launch the application.
@@ -32,6 +38,7 @@ public class UpdateCustomerInfo {
 				try {
 					UpdateCustomerInfo window = new UpdateCustomerInfo();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,6 +58,14 @@ public class UpdateCustomerInfo {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("내 정보 수정");
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				getCustomerId();
+			}
+		});
+
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -59,6 +74,8 @@ public class UpdateCustomerInfo {
 		frame.getContentPane().add(getTfId());
 		frame.getContentPane().add(getTfPw());
 		frame.getContentPane().add(getBtnUpdate());
+		frame.getContentPane().add(getBtnBack());
+
 	}
 	private JLabel getLblid() {
 		if (lblid == null) {
@@ -77,6 +94,7 @@ public class UpdateCustomerInfo {
 	private JTextField getTfId() {
 		if (tfId == null) {
 			tfId = new JTextField();
+			tfId.setEditable(false);
 			tfId.setBounds(195, 47, 130, 26);
 			tfId.setColumns(10);
 		}
@@ -106,6 +124,13 @@ public class UpdateCustomerInfo {
 		return btnUpdate;
 	}
 	
+
+	private void getCustomerId() {
+		
+		tfId.setText(Static_CustomerId.customer_id);
+	}
+	
+
 	private void updateAction() {
 
 		String customer_id = tfId.getText();
@@ -121,6 +146,7 @@ public class UpdateCustomerInfo {
 			JOptionPane.showMessageDialog(null, tfId.getText() + "님의 정보가 수정되었습니다.");
 
 			Static_CustomerId.setCustomer_id(customer_id);
+
 
 			LogIn login = new LogIn();
 			login.main(null);
@@ -155,7 +181,27 @@ public class UpdateCustomerInfo {
 		return i;
 
 	}
-	
 
+	private JButton getBtnBack() {
+		if (btnBack == null) {
+			btnBack = new JButton("이전 페이지");
+			// **************** 뒤로 가기 버튼 이벤트 ******************
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					backPage();
+				}
+			});
+			btnBack.setBounds(173, 199, 117, 29);
+		}
+		return btnBack;
+	}
+	
+	//==================메소드==============
+	public void backPage() {
+		productSelectList.main(null);
+		boolean UpdateCustomerInfo = new UpdateCustomerInfo() == null;
+		frame.setVisible(UpdateCustomerInfo);
+	}
+	
 	
 }
