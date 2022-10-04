@@ -18,6 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Event;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LogIn extends JDialog {
 
@@ -47,6 +50,9 @@ public class LogIn extends JDialog {
 	 */
 	public LogIn() {
 		initialize();
+	
+		
+		
 	}
 
 	/**
@@ -68,6 +74,26 @@ public class LogIn extends JDialog {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		tfIdInsert = new JTextField();
+		
+		
+		tfIdInsert.addKeyListener(new KeyAdapter() {
+			
+				
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				 if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					 
+					 tfPwInsert.requestFocus();//아이디 입력 후 엔터치면 비밀번호 입력칸으로 커서이동
+					 
+					 
+			        }
+				
+				
+				
+			}
+		});
 		tfIdInsert.setBounds(154, 95, 205, 21);
 		frame.getContentPane().add(tfIdInsert);
 		tfIdInsert.setColumns(10);
@@ -78,7 +104,11 @@ public class LogIn extends JDialog {
 		
 		JButton btnLogIn = new JButton("LOG IN");
 		// ************************** 로그인 버튼 이벤트 ********************************
+	
+		
+		
 		btnLogIn.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				String custId = tfIdInsert.getText().trim();
@@ -118,8 +148,12 @@ public class LogIn extends JDialog {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("가입하기 ");
+		
 		//***********************회원 가입 버튼 이벤트*****************************
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				Shoes_CustomerJoin shoes_CustomerJoin = new Shoes_CustomerJoin();
@@ -130,7 +164,55 @@ public class LogIn extends JDialog {
 		frame.getContentPane().add(btnNewButton);
 		
 		tfPwInsert = new JPasswordField();
+		tfPwInsert.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+	
+						
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){//비밀번호 입력 후 엔터 누르면 로그인 버튼 눌림
+					 
+				
+				
+					String custId = tfIdInsert.getText().trim();
+					String custPw = tfPwInsert.getText().trim();
+					
+					
+					
+					KioskLogInDao kioskLogInDao = new KioskLogInDao(custId, custPw);
+					
+					int loginCheck = kioskLogInDao.loginCheck();
+					
+					if(loginCheck == 1) {
+						JOptionPane.showMessageDialog(null, "로그인되었습니다.");
+						
+						Static_CustomerId.setCustomer_id(custId);
+						
+						frame.setVisible(false);
+						productSelectList.main(null);
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 확인하세요.");
+						System.out.println(loginCheck);
+					}
+					
+					 
+			        }
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
+		
 		tfPwInsert.setBounds(154, 145, 205, 21);
 		frame.getContentPane().add(tfPwInsert);
+		
+		
+
 	}
 }
