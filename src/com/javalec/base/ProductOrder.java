@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import com.javalec.dao.HelpDao;
-import com.javalec.dto.HelpDto;
+import com.javalec.dao.ProductOrderDao;
+import com.javalec.dto.ProductOrderDto;
 import com.javalec.util.Static_CustomerId;
 
 import javax.swing.JButton;
@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Help extends JDialog {
+public class ProductOrder extends JDialog {
 	private JLabel lblProductName;
 	private JButton btnOrder;
 	private JFrame frame;
@@ -38,7 +38,7 @@ public class Help extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help window = new Help();
+					ProductOrder window = new ProductOrder();
 					window.frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 					window.frame.setLocationRelativeTo(null);
@@ -60,7 +60,7 @@ public class Help extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Help() {
+	public ProductOrder() {
 		setTitle("제품 구매");
 		setBounds(100, 100, 358, 300);
 		getContentPane().setLayout(null);
@@ -185,8 +185,8 @@ public class Help extends JDialog {
 	// 선택한 상품을 구매하기 위한 구매 목록 출력
 	public void productOrderList(int wkSequence) {
 		
-		HelpDao dao = new HelpDao(wkSequence);
-		HelpDto dto = dao.tableClick();
+		ProductOrderDao dao = new ProductOrderDao(wkSequence);
+		ProductOrderDto dto = dao.tableClick();
 		
 		lblProductId.setText(Integer.toString(dto.getProduct_id()));
 		lblProductName.setText(dto.getProduct_name());
@@ -200,8 +200,8 @@ public class Help extends JDialog {
 
 	// 상품의 남은 수량을 확인하고 고객이 고른 상품 수량과 비교하는 메소드
 	private void productStockCheck() {
-		HelpDao dao = new HelpDao(Static_CustomerId.producdt_id);
-		HelpDto dto = dao.productStockCheck();
+		ProductOrderDao dao = new ProductOrderDao(Static_CustomerId.producdt_id);
+		ProductOrderDto dto = dao.productStockCheck();
 		
 		if(dto.getProduct_id() < Integer.parseInt((String)cbStock.getSelectedItem())) {
 			// 남은 재고가 고객이 고른 수량보다 적을 때
@@ -221,7 +221,7 @@ public class Help extends JDialog {
 		int product_price = Integer.parseInt(lblproductPrice.getText().trim());
 		int product_stock = Integer.parseInt((String)cbStock.getSelectedItem());
 		
-		HelpDao dao = new HelpDao(Static_CustomerId.customer_id, product_id, product_stock, product_price);
+		ProductOrderDao dao = new ProductOrderDao(Static_CustomerId.customer_id, product_id, product_stock, product_price);
 		int check = dao.productOrdersAction();
 		
 		if(check == 1) {
@@ -233,7 +233,7 @@ public class Help extends JDialog {
 //			productSelectList.main(null);
 			OrderList orderList = new OrderList();
 			orderList.main(null);
-			boolean help = new Help() == null;
+			boolean help = new ProductOrder() == null;
 			setVisible(help);
 			// ------------------------------------------
 			
@@ -251,7 +251,7 @@ public class Help extends JDialog {
 	
 	public void backPage() {
 		productSelectList.main(null);
-		boolean help = new Help() == null;
+		boolean help = new ProductOrder() == null;
 		setVisible(help);
 	}
 	
