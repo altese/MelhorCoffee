@@ -13,6 +13,7 @@ public class OrderListDto {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public OrderListDto(int order_id, String product_name, int order_quantity, int order_price) {
 		super();
 		this.order_id = order_id;
