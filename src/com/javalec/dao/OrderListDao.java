@@ -28,6 +28,7 @@ public class OrderListDao {
 
 		ArrayList<OrderListDto> dtoList = new ArrayList<OrderListDto>(); 
 
+
 		String whereStatement = "select order_id, product_name, order_quantity, order_price ";
 		String whereStatement2 = "from product p, orders o, customer c ";
 		String whereStatement3 = "where c.customer_id = " + Static_CustomerId.customer_id + " and o.product_id = p.product_id and o.customer_id = c.customer_id";
@@ -53,6 +54,7 @@ public class OrderListDao {
 
 				// 2. 입력된 데이터 DTO클래스에 저장
 				OrderListDto orderListDto = new OrderListDto(seqno, wkName, wkQuantity, wkPrice); // 가져온 데이터 묶는 역할
+
 				dtoList.add(orderListDto); // 2. 입력된 데이터 dtoList에도 저장
 			}
 
