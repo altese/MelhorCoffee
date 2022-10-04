@@ -24,6 +24,7 @@ public class UpdateCustomerInfo {
 	private JTextField tfId;
 	private JTextField tfPw;
 	private JButton btnUpdate;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -69,6 +70,7 @@ public class UpdateCustomerInfo {
 		frame.getContentPane().add(getTfId());
 		frame.getContentPane().add(getTfPw());
 		frame.getContentPane().add(getBtnUpdate());
+		frame.getContentPane().add(getBtnBack());
 	}
 	private JLabel getLblid() {
 		if (lblid == null) {
@@ -169,7 +171,33 @@ public class UpdateCustomerInfo {
 		return i;
 
 	}
+	private JButton getBtnBack() {
+		if (btnBack == null) {
+			btnBack = new JButton("이전 페이지");
+			// **************** 뒤로 가기 버튼 이벤트 ******************
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					backPage();
+				}
+			});
+			btnBack.setBounds(173, 199, 117, 29);
+		}
+		return btnBack;
+	}
 	
-
+	//==================메소드==============
+	public void backPage() {
+		productSelectList.main(null);
+		boolean UpdateCustomerInfo = new UpdateCustomerInfo() == null;
+		frame.setVisible(UpdateCustomerInfo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
