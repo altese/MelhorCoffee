@@ -154,7 +154,7 @@ public class OrderList extends JFrame {
 	public void backPage() {
 		productSelectList.main(null);
 //		boolean OrderList = new OrderList() == null;
-		setVisible(false);
+		frame.setVisible(false);
 	}
 	
 	
