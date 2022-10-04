@@ -1,26 +1,27 @@
 package com.javalec.dto;
 
 public class OrderListDto {
-	
-	//fields
+
+	// fields
+	int order_id;
 	String product_name;
 	int order_quantity;
 	int order_price;
-	
-	//constructor
+
+	// constructor
 	public OrderListDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderListDto(String product_name, int order_quantity, int order_price) {
+	public OrderListDto(int order_id, String product_name, int order_quantity, int order_price) {
 		super();
+		this.order_id = order_id;
 		this.product_name = product_name;
 		this.order_quantity = order_quantity;
 		this.order_price = order_price;
 	}
 
-
-	//getter&setter
+	// getter&setter
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -44,7 +45,13 @@ public class OrderListDto {
 	public void setOrder_price(int order_price) {
 		this.order_price = order_price;
 	}
-	
-	
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
 
 }
